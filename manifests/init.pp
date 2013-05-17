@@ -34,6 +34,7 @@ class myfirewall {
   class { ['myfirewall::pre', 'myfirewall::post']: }
   
   #class { 'firewall': }
+  include firewall
 
 }
 
