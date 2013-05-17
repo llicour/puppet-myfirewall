@@ -18,7 +18,7 @@ class myfirewall {
   ## prevent shutdown hanging at "iptables unloading modules"
   file { '/etc/sysconfig/iptables-config' :
       ensure => present,
-      source => 'puppet:///modules/firewall/iptables-config',
+      source => 'puppet:///modules/myfirewall/iptables-config',
       owner  => 'root',
       group  => 'root',
       mode   => '0600',
@@ -30,8 +30,10 @@ class myfirewall {
         before  => Class[ 'myfirewall::post' ],
         require => Class[ 'myfirewall::pre' ],
   }
+  
   class { ['myfirewall::pre', 'myfirewall::post']: }
+  
+  #class { 'firewall': }
 
-  class { 'firewall': }
 }
 
